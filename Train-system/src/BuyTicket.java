@@ -131,7 +131,8 @@ public class BuyTicket {
 				
 				//PRINT TICKET:
 				System.out.println("######################################################################\n#");
-				System.out.println("#   ## 3igen3ggy train lines ##   ##Line ID: " + "(" + a + ") \n#   ## Train ID: " + b + " ##\n#");
+				System.out.println("#   ## 3igen3ggy train lines ##   ##Line ID: " + "(" + a + ") \n#   ## Train ID: " + b + " ##\n" +
+						"#   ## Ticket ID: " + tick.getID() + " ##\n#");
 				System.out.println("#   " + Menu.st.getName() + " (" + Menu.st.getID() + ") [" + (startingTime.getHours() - 1) + ":" + startingTime.getMinutes() + "] --> " +
 						Menu.end.getName() + " (" + Menu.end.getID() + ") [" + (endingTime.getHours() - 1) + ":" + endingTime.getMinutes() + "]");
 				System.out.println("#   Total travel time: [" + (duration.getHours() - 1) + ":" + duration.getMinutes() + "]");
