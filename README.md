@@ -23,7 +23,6 @@ We are given price and course details. If we approve, and there are remaining fr
 
 
 To do in future:
--validate email
 -password strength validation
 -add more lines/trains/tickets
 -manipulating system from admin panel
