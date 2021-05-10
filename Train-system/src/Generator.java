@@ -45,7 +45,7 @@ public class Generator {
 		
 		//generate some trains
 		Train Morawiecki = new Train("MORAWIECKI666", 1, 20);
-		Train Fichuj = new Train("FICHUJ6969", 1, 10);
+		Train Fichuj = new Train("FELYPE6969", 1, 10);
 		Train Mickiewicz = new Train ("MICKIEWICZ997", 3, 20);
 		Train Asnyk = new Train ("ASNYK1337", 2, 25);
 		

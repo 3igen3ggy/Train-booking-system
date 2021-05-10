@@ -23,7 +23,8 @@ public class Menu {
 		int choice;
 		do {
 			Scanner sc = new Scanner(System.in);
-			System.out.println("3igen3ggy's train lines ADMIN PANEL\n");
+			System.out.print("\n###########\n");
+			System.out.println("3igen3ggy's\ntrain lines\nADMIN PANEL\n OVERVIEW\n###########\n");
 			System.out.println("1) Show cities database");
 			System.out.println("2) Show stations database");
 			System.out.println("3) Show trains list");
@@ -58,14 +59,16 @@ public class Menu {
 			System.out.println("1) LOGIN");
 			System.out.println("2) CREATE ACCOUNT");
 			System.out.println("3) ADMIN PANEL");
+			System.out.println("0) EXIT");
 			System.out.println("CHOICE: ");
 			int choice = sc.nextInt();
-			if (choice != 1 && choice != 2 && choice != 3) {
+			if (choice != 1 && choice != 2 && choice != 3 && choice != 0) {
 				System.out.println("###Incorrect choice###");
 			} else {
 				if (choice == 1) passenger = loginMenu();
 				if (choice == 2) createAccountMenu(); 
 				if (choice == 3) adminMode(); 
+				if (choice == 0) System.exit(0);
 			}
 			
 		} while (passenger == null);
@@ -127,20 +130,66 @@ public class Menu {
 	
 	public static void createAccountMenu() {
 		Scanner sc = new Scanner(System.in);
-
+		String name = "";
+		String surname = "";
+		String mail;
+		String pass;
+		boolean valid;
+		
 		System.out.printf("\n\nCREATE NEW ACCOUNT\n\n");
-		System.out.println("Enter your first name: ");
-		String name = sc.next();
-		System.out.println("Enter your last name: ");
-		String surname = sc.next();
-		System.out.println("Enter your email: ");
-		String mail = sc.next();
-		System.out.println("Enter your password: ");
-		String pass = sc.next();
+		do {
+			System.out.println("Enter your first name: ");
+			name = sc.next();
+		} while(name.length() < 2);
+		
+		do {
+			System.out.println("Enter your last name: ");
+			surname = sc.next();
+		} while (surname.length() < 2);
+		
+		do {
+			System.out.println("Enter your email: ");
+			mail = sc.next();
+			valid = emailCheck(mail);
+		} while (!valid);
+		
+		do {
+			System.out.println("Enter your password (at least 5 characters): ");
+			pass = sc.next();
+		} while (pass.length() < 5);
 		
 		Passenger p = new Passenger(name, surname, mail, pass);
 			
 		System.out.println("\nYour ID for login is: " + p.getID());
 		System.out.println("You can now login");
+	}
+	
+	@SuppressWarnings("deprecation")
+	public static boolean emailCheck(String email) {
+		boolean atFlag = false;
+		boolean dotFlag = false;
+		
+		for (int i = 0; i < email.length(); i++) {
+			if (email.charAt(i) == '@') atFlag = true;
+			if (email.charAt(i) == '.') dotFlag = true;
+		}
+		if (!atFlag || !dotFlag) return false;
+		
+		String[] a = email.split("@");
+		String[] b = a[1].split("\\.");
+		
+		String[] elementsOfEmail = new String[3];
+		elementsOfEmail[0] = a[0];
+		elementsOfEmail[1] = b[0];
+		elementsOfEmail[2] = b[1];
+		
+		if (elementsOfEmail[0].length() < 3) return false;
+		if (elementsOfEmail[2].length() != 2 && elementsOfEmail[2].length() != 3) return false;
+		
+		for (int i = 0; i < elementsOfEmail[0].length(); i++) {
+			char c = elementsOfEmail[0].charAt(i);
+			if (!Character.isJavaLetterOrDigit(c) && c != '_') return false;
+		}
+		return true;
 	}
 }

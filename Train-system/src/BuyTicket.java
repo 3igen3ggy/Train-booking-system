@@ -89,7 +89,8 @@ public class BuyTicket {
 		}
 		Scanner sc = new Scanner(System.in);
 		if (len == 0) {
-			System.out.print("\nSorry, no direct connection found\nLOGGING OUT");
+			System.out.println("### SORRY NO CONNECTION FOUND ###");
+			System.out.println("Going back to main menu");
 			return;
 		}
 		System.out.println("Choose train (1-" + len + "):");
